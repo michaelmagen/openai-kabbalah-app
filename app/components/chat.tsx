@@ -245,7 +245,7 @@ const Chat = ({
       })
       return [...prevMessages.slice(0, -1), updatedLastMessage];
     });
-    
+
   }
 
   return (
@@ -265,7 +265,7 @@ const Chat = ({
           className={styles.input}
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          placeholder="Enter your question"
+          placeholder="Enter your question about Pesach schedule, prices, matzah etc."
         />
         <button
           type="submit"
