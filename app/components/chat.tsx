@@ -64,6 +64,7 @@ const Chat = ({
   const [messages, setMessages] = useState([]);
   const [inputDisabled, setInputDisabled] = useState(false);
   const [threadId, setThreadId] = useState("");
+  const [waiting, setWaiting] = useState(false);
 
   // automatically scroll to bottom of chat
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
@@ -128,6 +129,7 @@ const Chat = ({
     ]);
     setUserInput("");
     setInputDisabled(true);
+    setWaiting(true);
     scrollToBottom();
   };
 
@@ -135,6 +137,7 @@ const Chat = ({
 
   // textCreated - create new assistant message
   const handleTextCreated = () => {
+    setWaiting(false);
     appendMessage("assistant", "");
   };
 
@@ -254,6 +257,7 @@ const Chat = ({
         {messages.map((msg, index) => (
           <Message key={index} role={msg.role} text={msg.text} />
         ))}
+        {waiting && <div className={styles.waitingMessage}>Waiting for response...</div>}
         <div ref={messagesEndRef} />
       </div>
       <form
